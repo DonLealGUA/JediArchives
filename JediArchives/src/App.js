@@ -1,24 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { ChakraProvider, CSSReset, Input, Flex } from '@chakra-ui/react';
+import CustomGrid from './components/grid';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ChakraProvider>
+      <CSSReset />
+
+      <Flex justify="center" align="center" height="100px">
+        <Input variant="filled" placeholder="Search Character" size="md" width="30%" />
+      </Flex>
+      <CustomGrid />
+    </ChakraProvider>
   );
 }
 
