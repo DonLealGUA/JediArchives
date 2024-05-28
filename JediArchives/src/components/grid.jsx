@@ -47,7 +47,7 @@ function CustomGrid() {
               onClick={() => handleCharacterClick(character)} 
               style={{ cursor: 'pointer' }} 
             >
-            <Image src={process.env.PUBLIC_URL + '/assets/images/characters/' + character.name + '.jpg'} borderRadius="lg" />
+            <Image src={process.env.PUBLIC_URL + '/assets/images/characters/' + character.name + '.jpg'} borderRadius="lg" style={{ height: '200px', width: '300px' }}/>
               <Stack mt="6" spacing="3">
                 <Heading size="md" align="center" color={"white"}>
                   {character.name}

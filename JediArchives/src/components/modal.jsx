@@ -11,7 +11,9 @@ import {
   Text,
   Spinner,
   HStack,
-  VStack
+  VStack,
+  Image,
+  Spacer
 } from '@chakra-ui/react';
 import { swapiApi } from '../api/SwapiAPI'; 
 
@@ -66,16 +68,21 @@ function CustomModal({ url, onClose }) {
               />
             ) : (
               <HStack>
-
-                <VStack>
-                <Text mt={'5%'}>Gender: {characterInfo?.gender}</Text>
-                <Text mt={'5%'}>Height: {characterInfo?.height}</Text>
-                <Text mt={'5%'}>Mass: {characterInfo?.mass}</Text>
-                <Text mt={'5%'}>Hair color: {characterInfo?.hair_color}</Text>
-                <Text mt={'5%'}>Skin color: {characterInfo?.skin_color}</Text>
-                <Text mt={'5%'}>Eye color: {characterInfo?.eye_color}</Text>
-                </VStack>
-              </HStack>
+  <VStack>
+    <Text mt={'5%'}>Gender: {characterInfo?.gender}</Text>
+    <Text mt={'5%'}>Height: {characterInfo?.height}</Text>
+    <Text mt={'5%'}>Mass: {characterInfo?.mass}</Text>
+    <Text mt={'5%'}>Hair color: {characterInfo?.hair_color}</Text>
+    <Text mt={'5%'}>Skin color: {characterInfo?.skin_color}</Text>
+    <Text mt={'5%'}>Eye color: {characterInfo?.eye_color}</Text>
+  </VStack>
+  <Spacer />
+  <Image
+    src={process.env.PUBLIC_URL + '/assets/images/characters/' + characterInfo?.name + '.jpg'}
+    borderRadius="lg"
+    style={{ height: '200px', width: '300px' }}
+  />
+</HStack>
             )}
           </ModalBody>
           <ModalFooter>
