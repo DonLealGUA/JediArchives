@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChakraProvider, CSSReset, Flex } from '@chakra-ui/react';
+import { ChakraProvider, CSSReset} from '@chakra-ui/react';
 import CustomGrid from './components/grid';
 import CustomNav from './components/nav';
 import CustomFooter from './components/footer';

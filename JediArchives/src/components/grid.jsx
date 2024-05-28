@@ -1,9 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { ChakraProvider, CSSReset, Grid, GridItem, Box, Image, Stack, Heading } from '@chakra-ui/react';
+import {
+  ChakraProvider,
+  CSSReset,
+  Grid,
+  GridItem,
+  Box,
+  Image,
+  Stack,
+  Heading,
+} from '@chakra-ui/react';
 import { swapiApi } from '../api/SwapiAPI';
+import CustomModal from '../components/modal';
 
 function CustomGrid() {
   const [characters, setCharacters] = useState([]);
+  const [selectedCharacterUrl, setSelectedCharacterUrl] = useState(null);
 
   useEffect(() => {
     const fetchCharacters = async () => {
@@ -18,24 +29,36 @@ function CustomGrid() {
     fetchCharacters();
   }, []);
 
+  const handleCharacterClick = (character) => {
+    setSelectedCharacterUrl(character.url); 
+  };
+
   return (
     <ChakraProvider>
       <CSSReset />
-      <Grid templateColumns="repeat(5, 1fr)" gap={6} padding={"80px"} paddingTop="auto">
+      <Grid templateColumns="repeat(5, 1fr)" gap={6} padding={'80px'} paddingTop="auto">
         {characters.map((character, index) => (
           <GridItem key={index} w="100%" h="300px">
-            <Box bg="blue.500" borderRadius="lg" p={4}>
-              <Image
-                src={`../assets/images/characters/Beru Whitesun lars.jpg`}
-                borderRadius='lg'
-              />
-              <Stack mt='6' spacing='3'>
-                <Heading size='md' align="center">{character.name}</Heading>
+            <Box
+              bg="blue.500"
+              borderRadius="lg"
+              p={4}
+              onClick={() => handleCharacterClick(character)} 
+              style={{ cursor: 'pointer' }} 
+            >
+              <Image src={`../assets/images/characters/Beru Whitesun lars.jpg`} borderRadius="lg" />
+              <Stack mt="6" spacing="3">
+                <Heading size="md" align="center">
+                  {character.name}
+                </Heading>
               </Stack>
             </Box>
           </GridItem>
         ))}
       </Grid>
+      {selectedCharacterUrl && (
+        <CustomModal url={selectedCharacterUrl} onClose={() => setSelectedCharacterUrl(null)} />
+      )}
     </ChakraProvider>
   );
 }
