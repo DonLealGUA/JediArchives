@@ -12,10 +12,17 @@ import {
 import { swapiApi } from '../api/SwapiAPI';
 import CustomModal from '../components/modal';
 
+  /**
+  * CustomGrid is repsonsable for the automatic creaton of new grids.
+  * And also for parsing data to the modal
+  */ 
 function CustomGrid() {
   const [characters, setCharacters] = useState([]);
   const [selectedCharacterUrl, setSelectedCharacterUrl] = useState(null);
 
+  /**
+  * When loading in to the site it fetches all characters
+  */ 
   useEffect(() => {
     const fetchCharacters = async () => {
       try {
@@ -29,6 +36,9 @@ function CustomGrid() {
     fetchCharacters();
   }, []);
 
+  /**
+  * When a item is selcted it sets the charachter url for modal
+  */ 
   const handleCharacterClick = (character) => {
     setSelectedCharacterUrl(character.url); 
   };

@@ -1,6 +1,9 @@
 import React from 'react';
 import { Flex } from '@chakra-ui/react';
 
+  /**
+   * The websites footer is created here
+  */ 
 function CustomFooter() {
   return (
     <Flex
