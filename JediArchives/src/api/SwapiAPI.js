@@ -1,6 +1,9 @@
 import axios from "axios";
 
 const swapiApi = {
+  /**
+   * API call to Swapi to get all characters
+  */ 
   getAllCharacters: async () => {
     try {
       const response = await axios.get(`https://swapi.dev/api/people/`);
@@ -11,7 +14,10 @@ const swapiApi = {
     }
   },
 
-  getCharacterById: async (url) => {
+  /**
+  * API call to Swapi to get a specific character by url
+  */ 
+  getCharacterByURL: async (url) => {
     try {
       const response = await axios.get(url);
       return response.data;

@@ -17,15 +17,18 @@ import {
 } from "@chakra-ui/react";
 import { swapiApi } from "../api/SwapiAPI";
 
+  /**
+  * Modal displays more infromation about a specefik item 
+  * items right now is only characters but future impementation could be plantes, starships ..etc
+  */ 
 function CustomModal({ url, onClose }) {
-  const {
-    isOpen,
-    onOpen,
-    onClose: onModalClose,
-  } = useDisclosure({ isOpen: !!url, onClose });
+  const { isOpen, onOpen, onClose: onModalClose,} = useDisclosure({ isOpen: !!url, onClose });
   const [characterInfo, setCharacterInfo] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  /**
+  * Gets and sets charachter info from the url 
+  */ 
   const getInfoAboutCharacter = async (url) => {
     onOpen();
     setIsLoading(true);
@@ -48,6 +51,9 @@ function CustomModal({ url, onClose }) {
     }
   };
 
+  /**
+  * When modal is visable it directly calls getInfoAboutCharacter with the api call url
+  */ 
   React.useEffect(() => {
     if (url) {
       getInfoAboutCharacter(url);
