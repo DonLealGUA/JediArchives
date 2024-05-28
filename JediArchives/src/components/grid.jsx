@@ -21,10 +21,10 @@ function CustomGrid() {
   return (
     <ChakraProvider>
       <CSSReset />
-      <Grid templateColumns="repeat(5, 1fr)" gap={6}>
+      <Grid templateColumns="repeat(5, 1fr)" gap={6} padding={"30px"}>
         {characters.map((character, index) => (
-          <GridItem key={index} w="100%" h="300px" bg="blue.500">
-            <p>{character.name}</p>
+          <GridItem key={index} w="100%" h="300px" bg="blue.500"  paddingTop="10px" fontSize={"20px"} fontWeight={"bold"}>
+            <p align="center">{character.name}</p>
           </GridItem>
         ))}
       </Grid>

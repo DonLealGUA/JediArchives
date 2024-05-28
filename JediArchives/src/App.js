@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChakraProvider, CSSReset, Input, Flex } from '@chakra-ui/react';
+import { ChakraProvider, CSSReset, Flex } from '@chakra-ui/react';
 import CustomGrid from './components/grid';
 
 function App() {
@@ -7,8 +7,8 @@ function App() {
     <ChakraProvider>
       <CSSReset />
 
-      <Flex justify="center" align="center" height="100px">
-        <Input variant="filled" placeholder="Search Character" size="md" width="30%" />
+      <Flex justify="center" align="center" height="80px" pad bg={"black"}>
+        {/*<Input variant="filled" placeholder="Search Character" size="md" width="30%" />*/}
       </Flex>
       <CustomGrid />
     </ChakraProvider>
