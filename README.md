@@ -10,7 +10,7 @@ JediArchives is developed with a single API and two external libraries in React.
 ## Run Application
 To run this application Node.js and npm is required
 
-### How to get npm?:
+### How to get npm?
 
  install Node.js [here](https://nodejs.org/en) 
 
@@ -21,7 +21,7 @@ From the root run:
 $ cd .\JediArchives\
 ```
 
-And to install the dependencies run:
+And to install the dependencies run
 
 ```
 $ npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion
@@ -31,7 +31,7 @@ And
 $ npm install axios
 ```
 
-And to run the applicaiton run:
+And to start the applicaiton run:
 ```
 $ npm start 
 ```
