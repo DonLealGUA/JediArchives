@@ -13,8 +13,9 @@ function CustomFooter() {
       left="0"
       right="0"
       color={"White"}
+      backgroundImage={process.env.PUBLIC_URL + '/assets/images/galaxia.png'}
     >
-      <p>Footer</p>
+      <p>@Jedi Archives</p>
     </Flex>
   );
 }
