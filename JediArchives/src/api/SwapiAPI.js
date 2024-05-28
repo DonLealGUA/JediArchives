@@ -11,9 +11,9 @@ const swapiApi = {
     }
   },
 
-  getCharacterById: async (id) => {
+  getCharacterById: async (url) => {
     try {
-      const response = await axios.get(`https://swapi.dev/api/people/${id}/`);
+      const response = await axios.get(url);
       return response.data;
     } catch (error) {
       console.error("Error fetching character:", error);
