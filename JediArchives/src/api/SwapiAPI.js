@@ -1,24 +1,25 @@
-import { axios } from "@pipedream/platform"
+import axios from "axios";
 
-export default defineComponent({
-  props: {
-    swapi: {
-      type: "app",
-      app: "swapi",
+const swapiApi = {
+  getAllCharacters: async () => {
+    try {
+      const response = await axios.get(`https://swapi.dev/api/people/`);
+      return response.data.results;
+    } catch (error) {
+      console.error("Error fetching characters:", error);
+      return [];
     }
   },
-  methods: {
-    async getAllCharacters($) {
-      const response = await axios($, {
-        url: `https://swapi.dev/api/people/`,
-      });
-      return response.results;
-    },
-    async getCharacterById($, id) {
-      const response = await axios($, {
-        url: `https://swapi.dev/api/people/${id}/`,
-      });
-      return response;
-    },
-  },
-})
+
+  getCharacterById: async (id) => {
+    try {
+      const response = await axios.get(`https://swapi.dev/api/people/${id}/`);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching character:", error);
+      return null;
+    }
+  }
+};
+
+export { swapiApi }; 
