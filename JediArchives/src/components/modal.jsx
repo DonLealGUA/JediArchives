@@ -8,7 +8,6 @@ import {
   ModalBody,
   ModalCloseButton,
   useDisclosure,
-  Button,
   Text,
   Spinner,
   HStack,
@@ -80,7 +79,6 @@ function CustomModal({ url, onClose }) {
             )}
           </ModalBody>
           <ModalFooter>
-        
           </ModalFooter>
         </ModalContent>
       </Modal>

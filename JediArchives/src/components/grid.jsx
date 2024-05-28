@@ -40,15 +40,16 @@ function CustomGrid() {
         {characters.map((character, index) => (
           <GridItem key={index} w="100%" h="300px">
             <Box
-              bg="blue.500"
+              bg={"blue.500"}
+              backgroundImage={process.env.PUBLIC_URL + '/assets/images/galaxia.png'}
               borderRadius="lg"
               p={4}
               onClick={() => handleCharacterClick(character)} 
               style={{ cursor: 'pointer' }} 
             >
-              <Image src={`../assets/images/characters/Beru Whitesun lars.jpg`} borderRadius="lg" />
+            <Image src={process.env.PUBLIC_URL + '/assets/images/characters/' + character.name + '.jpg'} borderRadius="lg" />
               <Stack mt="6" spacing="3">
-                <Heading size="md" align="center">
+                <Heading size="md" align="center" color={"white"}>
                   {character.name}
                 </Heading>
               </Stack>
