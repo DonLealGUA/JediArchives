@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const swapiApi = {
+const SWDBApi = {
   /**
-   * API call to Swapi to get all characters
+   * API call to SWDB to get all characters
   */ 
   getAllCharacters: async (page) => {
     try {
@@ -16,7 +16,7 @@ const swapiApi = {
   },
 
   /**
-  * API call to Swapi to get all Planets
+  * API call to SWDB to get all Planets
   */ 
     getAllPlanets: async (page) => {
       try {
@@ -30,7 +30,7 @@ const swapiApi = {
     },
 
   /**
-  * API call to Swapi to get all StarShips
+  * API call to SWDB to get all StarShips
   */ 
   getAllDroids: async (page) => {
     try {
@@ -44,7 +44,7 @@ const swapiApi = {
   },
 
   /**
-  * API call to Swapi to get all vehicles
+  * API call to SWDB to get all vehicles
   */ 
     getAllVehicles: async (page) => {
       try {
@@ -58,7 +58,7 @@ const swapiApi = {
     },
 
   /**
-  * API call to Swapi to get all movies
+  * API call to SWDB to get all movies
   */ 
   getAllOrganizations: async (page) => {
     try {
@@ -70,6 +70,100 @@ const swapiApi = {
       return [];
     }
   },
+
+/**
+   * API call to SWDB to get a searched character
+  */ 
+getSearchedCharacters: async (name) => {
+  try {
+    const url = `https://starwars-databank-server.vercel.app/api/v1/characters/name/${name}`;
+    const response = await axios.get(url);
+    if (response.data.length > 0) {
+      const { description, image } = response.data[0];
+      return { description, image };
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error("Error fetching characters:", error);
+    return null;
+  }
+},
+
+/**
+* API call to SWDB to get a searched Planets
+*/ 
+getSearchedPlanets: async (name) => {
+  try {
+    const url = `https://starwars-databank-server.vercel.app/api/v1/locations/name/${name}`;
+    const response = await axios.get(url);
+    if (response.data.length > 0) {
+      return response.data[0];
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error("Error fetching planets:", error);
+    return null;
+  }
+},
+
+
+/**
+* API call to SWDB to get a searched StarShips
+*/ 
+getSearchedDroids: async (name) => {
+  try {
+    const url = `https://starwars-databank-server.vercel.app/api/v1/droids/name/${name}`;
+    const response = await axios.get(url);
+    if (response.data.length > 0) {
+      return response.data[0]; 
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error("Error fetching droids:", error);
+    return null;
+  }
+},
+
+
+/**
+* API call to SWDB to get a searched vehicles
+*/ 
+getSearchedVehicles: async (name) => {
+  try {
+    const url = `https://starwars-databank-server.vercel.app/api/v1/vehicles/name/${name}`;
+    const response = await axios.get(url);
+    if (response.data.length > 0) {
+      return response.data[0]; 
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error("Error fetching vehicles:", error);
+    return null;
+  }
+},
+
+
+/**
+* API call to SWDB to get a searched movies
+*/ 
+getSearchedOrganizations: async (name) => {
+  try {
+    const url = `https://starwars-databank-server.vercel.app/api/v1/organizations/name/${name}`;
+    const response = await axios.get(url);
+    if (response.data.length > 0) {
+      return response.data[0];
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error("Error fetching organizations:", error);
+    return null;
+  }
+},
 };
 
-export { swapiApi }; 
+export { SWDBApi };
