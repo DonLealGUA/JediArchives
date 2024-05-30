@@ -17,7 +17,7 @@ const swapiApi = {
   /**
   * API call to Swapi to get a specific character by url
   */ 
-  getCharacterByURL: async (url) => {
+  getRequestByURL: async (url) => {
     try {
       const response = await axios.get(url);
       return response.data;
