@@ -18,16 +18,16 @@ To run this application Node.js and npm is required
 
 From the root run:
 ```
-$ cd .\JediArchives\
+ cd .\JediArchives\
 ```
 
 And to install the dependencies run
 
 ```
-$ npm i
+ npm i
 ```
 
 And to start the applicaiton run:
 ```
-$ npm start 
+ npm start 
 ```
