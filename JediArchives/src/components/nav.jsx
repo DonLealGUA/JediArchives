@@ -13,10 +13,10 @@ function CustomNav({ setCategory }) {
       </Flex>
       <Flex>
         <Button marginRight="10px" onClick={() => setCategory('characters')}>Characters</Button>
-        <Button marginRight="10px" onClick={() => setCategory('planets')}>Planets</Button>
-        <Button marginRight="10px" onClick={() => setCategory('starships')}>StarShips</Button>
+        <Button marginRight="10px" onClick={() => setCategory('droids')}>Droids</Button>
         <Button marginRight="10px" onClick={() => setCategory('vehicles')}>Vehicles</Button>
-        <Button marginRight="10px" onClick={() => setCategory('movies')}>Movies</Button>
+        <Button marginRight="10px" onClick={() => setCategory('planets')}>Locations</Button>
+        <Button marginRight="10px" onClick={() => setCategory('organization')}>Organization</Button>
       </Flex>
     </Flex>
   );

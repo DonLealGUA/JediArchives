@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ChakraProvider, CSSReset } from '@chakra-ui/react';
 import CustomNav from './components/nav';
 import CustomGrid from './components/grid';
+import CustomFooter from './components/footer';
 
 function App() {
   const [category, setCategory] = useState('characters');
@@ -11,6 +12,7 @@ function App() {
       <CSSReset />
       <CustomNav setCategory={setCategory} />
       <CustomGrid category={category} />
+      <CustomFooter/>
     </ChakraProvider>
   );
 }
