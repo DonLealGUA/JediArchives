@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Modal,
   ModalOverlay,
@@ -9,56 +9,30 @@ import {
   ModalCloseButton,
   useDisclosure,
   Text,
-  Spinner,
   HStack,
   VStack,
   Image,
   Spacer,
 } from "@chakra-ui/react";
-import { swapiApi } from "../api/SwapiAPI";
+
+/**
+ * Modal displays more information about a specific item
+ * items right now is only category s but future implementation could be planets, starships ..etc
+ */
+function CustomModal({ category , onClose }) {
+  const { isOpen, onOpen, onClose: onModalClose } = useDisclosure({
+    isOpen: !!category ,
+    onClose,
+  });
 
   /**
-  * Modal displays more infromation about a specefik item 
-  * items right now is only characters but future impementation could be plantes, starships ..etc
-  */ 
-function CustomModal({ url, onClose }) {
-  const { isOpen, onOpen, onClose: onModalClose,} = useDisclosure({ isOpen: !!url, onClose });
-  const [characterInfo, setCharacterInfo] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-
-  /**
-  * Gets and sets charachter info from the url 
-  */ 
-  const getInfoAboutCharacter = async (url) => {
-    onOpen();
-    setIsLoading(true);
-    try {
-      console.log(url);
-      const characterData = await swapiApi.getRequestByURL(url);
-      setCharacterInfo({
-        name: characterData.name,
-        gender: characterData.gender,
-        height: characterData.height,
-        mass: characterData.mass,
-        hair_color: characterData.hair_color,
-        skin_color: characterData.skin_color,
-        eye_color: characterData.eye_color,
-      });
-    } catch (error) {
-      console.error("Error fetching character info:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  /**
-  * When modal is visable it directly calls getInfoAboutCharacter with the api call url
-  */ 
+   * When modal is visible it directly displays the category  information
+   */
   React.useEffect(() => {
-    if (url) {
-      getInfoAboutCharacter(url);
+    if (category ) {
+      onOpen();
     }
-  }, [url]);
+  }, [category , onOpen]);
 
   return (
     <>
@@ -67,44 +41,24 @@ function CustomModal({ url, onClose }) {
         onClose={onModalClose}
         isCentered={true}
         closeOnEsc={true}
-        size={"2xl"}
+        size={"3xl"}
       >
         <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />
         <ModalContent>
-          <ModalHeader>{characterInfo?.name}</ModalHeader>
+          <ModalHeader>{category.name}</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>
-            {isLoading ? (
-              <Spinner
-                thickness="4px"
-                speed="0.65s"
-                emptyColor="gray.200"
-                color="blue.500"
-                size="xl"
-              />
-            ) : (
+          <ModalBody>    
               <HStack>
                 <VStack>
-                  <Text mt={"5%"}>Gender: {characterInfo?.gender}</Text>
-                  <Text mt={"5%"}>Height: {characterInfo?.height}</Text>
-                  <Text mt={"5%"}>Mass: {characterInfo?.mass}</Text>
-                  <Text mt={"5%"}>Hair color: {characterInfo?.hair_color}</Text>
-                  <Text mt={"5%"}>Skin color: {characterInfo?.skin_color}</Text>
-                  <Text mt={"5%"}>Eye color: {characterInfo?.eye_color}</Text>
+                  <Text mt={"5%"}>{category.description}</Text>
                 </VStack>
                 <Spacer />
                 <Image
-                  src={
-                    process.env.PUBLIC_URL +
-                    "/assets/images/characters/" +
-                    characterInfo?.name +
-                    ".jpg"
-                  }
+                  src={category.image}
                   borderRadius="lg"
                   style={{ height: "200px", width: "300px" }}
                 />
               </HStack>
-            )}
           </ModalBody>
           <ModalFooter></ModalFooter>
         </ModalContent>

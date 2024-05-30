@@ -8,12 +8,13 @@ import {
   Heading,
   Spinner 
 } from '@chakra-ui/react';
-import { swapiApi } from '../api/SwapiAPI';
+import { swapiApi } from '../api/SWDB API';
 import CustomModal from '../components/modal';
+
 
 function CustomGrid({ category }) {
   const [data, setData] = useState([]);
-  const [selectedUrl, setSelectedUrl] = useState(null);
+  const [selectedcategory , setSelectedcategory ] = useState(null);
   const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
@@ -28,14 +29,14 @@ function CustomGrid({ category }) {
           case 'planets':
             response = await swapiApi.getAllPlanets();
             break;
-          case 'starships':
-            response = await swapiApi.getAllStarShips();
+          case 'droids':
+            response = await swapiApi.getAllDroids();
             break;
           case 'vehicles':
             response = await swapiApi.getAllVehicles();
             break;
-          case 'movies':
-            response = await swapiApi.getAllMovies();
+          case 'organization':
+            response = await swapiApi.getAllOrganizations();
             break;
           default:
             response = [];
@@ -51,8 +52,8 @@ function CustomGrid({ category }) {
     fetchData();
   }, [category]);
 
-  const handleItemClick = (item) => {
-    setSelectedUrl(item.url);
+  const handleItemClick = (category ) => {
+    setSelectedcategory (category );
   };
 
   return (
@@ -73,31 +74,31 @@ function CustomGrid({ category }) {
           />
         </div>
       )}
-      {!loading && (
-        <Grid templateColumns="repeat(5, 1fr)" gap={6} padding={'80px'} paddingTop="auto">
-          {data.map((item, index) => (
-            <GridItem key={index} w="100%" h="300px">
-              <Box
-                bg={"blue.500"}
-                backgroundImage={process.env.PUBLIC_URL + '/assets/images/galaxia.png'}
-                borderRadius="lg"
-                p={4}
-                onClick={() => handleItemClick(item)}
-                style={{ cursor: 'pointer' }}
-              >
-                <Image src={process.env.PUBLIC_URL + `/assets/images/${category}/${item.name || item.title}.jpg`} borderRadius="lg" style={{ height: '230px', width: '300px' }} />
-                <Stack mt="6" spacing="3">
-                  <Heading size="md" align="center" color={"white"}>
-                    {item.name || item.title}
-                  </Heading>
-                </Stack>
-              </Box>
-            </GridItem>
-          ))}
-        </Grid>
-      )}
-      {selectedUrl && (
-        <CustomModal url={selectedUrl} onClose={() => setSelectedUrl(null)} />
+      {!loading && data.length > 0 && (
+  <Grid templateColumns="repeat(5, 1fr)" gap={6} padding={'80px'} paddingTop="auto">
+    {data.map((category , index) => (
+      <GridItem key={index} w="100%" h="300px">
+        <Box
+          bg={"blue.500"}
+          backgroundImage={process.env.PUBLIC_URL + '/assets/images/galaxia.png'}
+          borderRadius="lg"
+          p={4}
+          onClick={() => handleItemClick(category )}
+          style={{ cursor: 'pointer' }}
+        >
+          <Image src={category.image} borderRadius="lg" style={{ height: '230px', width: '300px' }} />
+          <Stack mt="6" spacing="3">
+            <Heading size="md" align="center" color={"white"}>
+              {category.name}
+            </Heading>
+          </Stack>
+        </Box>
+      </GridItem>
+    ))}
+  </Grid>
+)}
+      {selectedcategory  && (
+        <CustomModal category ={selectedcategory } onClose={() => setSelectedcategory (null)} />
       )}
     </div>
   );
