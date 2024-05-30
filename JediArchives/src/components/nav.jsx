@@ -1,6 +1,9 @@
 import React from 'react';
 import { Flex, Image, Text, Button } from '@chakra-ui/react';
 
+ /**
+   * The websites header is created here
+  */ 
 function CustomNav({ setCategory }) {
   return (
     <Flex justify="space-between" align="center" height="80px" bg="black" px={4} backgroundImage={process.env.PUBLIC_URL + '/assets/images/galaxia.png'}>
