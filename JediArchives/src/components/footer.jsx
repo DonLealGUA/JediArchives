@@ -11,7 +11,6 @@ function CustomFooter() {
       align="center"
       height="80px"
       bg="black"
-      position="fixed"
       bottom="0"
       left="0"
       right="0"
