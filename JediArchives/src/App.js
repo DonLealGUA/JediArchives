@@ -1,16 +1,16 @@
-import React from 'react';
-import { ChakraProvider, CSSReset} from '@chakra-ui/react';
-import CustomGrid from './components/grid';
+import React, { useState } from 'react';
+import { ChakraProvider, CSSReset } from '@chakra-ui/react';
 import CustomNav from './components/nav';
-import CustomFooter from './components/footer';
+import CustomGrid from './components/grid';
 
 function App() {
+  const [category, setCategory] = useState('characters');
+
   return (
     <ChakraProvider>
       <CSSReset />
-      <CustomNav />
-      <CustomGrid />
-      <CustomFooter />
+      <CustomNav setCategory={setCategory} />
+      <CustomGrid category={category} />
     </ChakraProvider>
   );
 }
