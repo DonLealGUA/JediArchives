@@ -24,11 +24,7 @@ $ cd .\JediArchives\
 And to install the dependencies run:
 
 ```
-$ npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion
-```
-And
-```
-$ npm install axios
+$ npm i
 ```
 
 And to run the applicaiton run:
