@@ -34,7 +34,7 @@ function CustomModal({ url, onClose }) {
     setIsLoading(true);
     try {
       console.log(url);
-      const characterData = await swapiApi.getCharacterById(url);
+      const characterData = await swapiApi.getCharacterByURL(url);
       setCharacterInfo({
         name: characterData.name,
         gender: characterData.gender,
