@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   Grid,
   GridItem,
@@ -11,38 +11,39 @@ import {
   Text,
   Flex,
 } from "@chakra-ui/react";
-import { swapiApi } from "../api/SWDB API";
+import { SWDBApi } from "../api/SWDB API";
 import CustomModal from "../components/modal";
 
-function CustomGrid({ category }) {
+function CustomGrid({category}) {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
   const [selectedcategory, setSelectedcategory] = useState(null);
   const [loading, setLoading] = useState(true);
+  const prevCategoryRef = useRef(null);
 
   /**
    * Displays content based on Category selected in the Navbar
    */
   useEffect(() => {
     const fetchData = async () => {
-      try {
+      try {  
         setLoading(true);
         let response;
         switch (category) {
           case "characters":
-            response = await swapiApi.getAllCharacters(page);
+            response = await SWDBApi.getAllCharacters(page);
             break;
           case "planets":
-            response = await swapiApi.getAllPlanets(page);
+            response = await SWDBApi.getAllPlanets(page);
             break;
           case "droids":
-            response = await swapiApi.getAllDroids(page);
+            response = await SWDBApi.getAllDroids(page);
             break;
           case "vehicles":
-            response = await swapiApi.getAllVehicles(page);
+            response = await SWDBApi.getAllVehicles(page);
             break;
           case "organization":
-            response = await swapiApi.getAllOrganizations(page);
+            response = await SWDBApi.getAllOrganizations(page);
             break;
           default:
             response = [];
@@ -55,8 +56,19 @@ function CustomGrid({ category }) {
       }
     };
 
+    /** 
+     * Checks so that the previous category is the current category and has not changed
+     * Else the page number resets to 1
+     */ 
+    if (prevCategoryRef.current !== null && category !== prevCategoryRef.current) {
+      if (!(prevCategoryRef.current === "character" && category === "characters")) {
+        setPage(1);
+      }
+    }
+    prevCategoryRef.current = category;
     fetchData();
   }, [category, page]);
+
 
   /**
    * Sends the object to modal 
